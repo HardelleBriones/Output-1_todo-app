@@ -1,0 +1,70 @@
+{
+  "tasks": [
+    {
+      "id": "2d42",
+      "task": "grocery shopping",
+      "description": "buy apples",
+      "date": "2024-05-14"
+    },
+    {
+      "id": "0e91",
+      "task": "something",
+      "description": "123",
+      "date": "2024-05-15"
+    },
+    {
+      "id": "a34f",
+      "task": "homework",
+      "description": "complete math assignment",
+      "date": "2024-05-16"
+    },
+    {
+      "id": "b57c",
+      "task": "workout",
+      "description": "go for a run",
+      "date": "2024-05-17"
+    },
+    {
+      "id": "c83e",
+      "task": "cleaning",
+      "description": "tidy up the living room",
+      "date": "2024-05-18"
+    },
+    {
+      "id": "d29a",
+      "task": "appointments",
+      "description": "dentist appointment",
+      "date": "2024-05-19"
+    },
+    {
+      "id": "e10b",
+      "task": "shopping",
+      "description": "buy groceries",
+      "date": "2024-05-20"
+    },
+    {
+      "id": "f76d",
+      "task": "reading",
+      "description": "finish '1984' by George Orwell",
+      "date": "2024-05-21"
+    },
+    {
+      "id": "g45e",
+      "task": "coding",
+      "description": "work on personal project",
+      "date": "2024-05-22"
+    },
+    {
+      "id": "h28f",
+      "task": "gardening",
+      "description": "plant flowers in the backyard",
+      "date": "2024-05-23"
+    },
+    {
+      "id": "5c16",
+      "task": "something",
+      "description": "",
+      "date": ""
+    }
+  ]
+}
