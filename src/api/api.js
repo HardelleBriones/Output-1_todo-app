@@ -1,30 +1,40 @@
 export const fetchTasks = async () => {
-  const res = await fetch("/api/tasks/");
+  const res = await fetch(
+    "https://my-json-server.typicode.com/HardelleBriones/backend-json-server/tasks"
+  );
   const data = await res.json();
   return data;
 };
 
 export const deleteTask = async (id) => {
-  await fetch(`/api/tasks/${id}/`, {
-    method: "DELETE",
-  });
+  await fetch(
+    `https://my-json-server.typicode.com/HardelleBriones/backend-json-server/tasks/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
   return;
 };
 
 export const addTask = async (newTask) => {
-  await fetch("/api/tasks/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newTask),
-  });
+  const data = await fetch(
+    "https://my-json-server.typicode.com/HardelleBriones/backend-json-server/tasks/",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newTask),
+    }
+  );
   return;
 };
 
 export const updateTaskStatus = async (id, newStatus) => {
   // Fetch the current task data
-  const response = await fetch(`/api/tasks/${id}`);
+  const response = await fetch(
+    `https://my-json-server.typicode.com/HardelleBriones/backend-json-server/tasks/${id}`
+  );
   const task = await response.json();
 
   // Update the status field
