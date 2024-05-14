@@ -32,7 +32,7 @@ const NewTask = () => {
     };
     try {
       await addTask(newTask);
-    return navigate("/");
+      return navigate("/");
     } catch (error) {
       console.log("error adding task", error);
     }
@@ -40,13 +40,20 @@ const NewTask = () => {
   const darkTheme = useContext(ThemeContext);
 
   const darkMode = () => {
-    return darkTheme ? "bg-gray-500 h-screen" : "bg-indigo-500 h-screen";
+    return darkTheme
+      ? "bg-gray-500 min-h-screen w-full"
+      : "bg-indigo-500 min-h-screen w-full ";
+  };
+  const darkModeForm = () => {
+    return darkTheme
+      ? "w-130 p-6 mt-6 mb-6  bg-gray-600 rounded-md"
+      : "w-130 p-6 mt-6 mb-6  bg-blue-300 rounded-md ";
   };
   return (
     <>
       <div className={darkMode()}>
         <div className="  flex justify-center items-center">
-          <div className="w-130 p-6 mt-6  bg-blue-300 rounded-md ">
+          <div className={darkModeForm()}>
             <h1>Add New Task</h1>
             <hr className="mt-3" />
             <div className="mt-3">
@@ -85,11 +92,11 @@ const NewTask = () => {
             <br />
             <div className="flex justify-center mt-5">
               <button
-                className=" bg-indigo-700 text-white py-1 px-5"
+                className="bg-indigo-700 text-white py-2 px-6 rounded-lg hover:bg-indigo-800"
                 onClick={handleOnSubmit}
                 type="submit"
               >
-                Add Task
+                Add task
               </button>
             </div>
           </div>
