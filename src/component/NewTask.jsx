@@ -7,11 +7,11 @@ import { addTask } from "../api/api";
 const NewTask = () => {
   const navigate = useNavigate();
   const [task, setTask] = useState("");
-  const [description, setDescription] = useState("");
+  const [note, setNote] = useState("");
   const [date, setDate] = useState("");
 
-  const handleDescriptionChange = (event) => {
-    setDescription(event.target.value);
+  const handleNoteChange = (event) => {
+    setNote(event.target.value);
   };
   const handleTaskChange = (event) => {
     setTask(event.target.value);
@@ -20,19 +20,22 @@ const NewTask = () => {
   const handleDateChange = (event) => {
     setDate(event.target.value);
   };
-  const handleOnSubmit = () => {
+  const handleOnSubmit = async () => {
     if (task.trim() === "") {
       alert("Task name cannot be empty");
       return; // Do not proceed with submission if task name is empty
     }
     const newTask = {
       task,
-      description,
+      note,
       date,
     };
-    addTask(newTask);
-    toast.success("Task Added Successfully");
+    try {
+      await addTask(newTask);
     return navigate("/");
+    } catch (error) {
+      console.log("error adding task", error);
+    }
   };
   const darkTheme = useContext(ThemeContext);
 
@@ -60,10 +63,10 @@ const NewTask = () => {
 
             <div>
               <br />
-              <label htmlFor="">Description </label> <br />
+              <label htmlFor="">Note </label> <br />
               <textarea
-                value={description}
-                onChange={handleDescriptionChange}
+                value={note}
+                onChange={handleNoteChange}
                 className="resize-none border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600"
                 cols="50"
                 rows="10"
