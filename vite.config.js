@@ -9,7 +9,7 @@ export default defineConfig({
     proxy: {
       "/api": {
         target:
-          "https://my-json-server.typicode.com/HardelleBriones/backend-json-server/",
+          "https://my-json-server.typicode.com/HardelleBriones/backend-json-server",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
