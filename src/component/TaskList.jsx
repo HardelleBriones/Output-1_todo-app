@@ -30,6 +30,10 @@ const TaskList = () => {
     try {
       const statusUpdate = "Complete";
       await updateTaskStatus(id, statusUpdate);
+      const index = todo.findIndex((todo) => todo.id === id);
+      if (index !== -1) {
+        todo[index].status = statusUpdate;
+      }
       const filterStatus = todo.filter((x) => x.id !== id);
       setTodo(filterStatus);
       toast.success("Task Completed");
@@ -76,9 +80,13 @@ const TaskList = () => {
   const handleDelete = async () => {
     console.log(taskIdToDelete);
     try {
-      const filterDelete = todo.filter((x) => x.id !== taskIdToDelete);
       await deleteTask(taskIdToDelete);
-      setTodo(filterDelete);
+      const index = allData.findIndex((todo) => todo.id === taskIdToDelete);
+      if (index !== -1) {
+        allData.splice(index, 1);
+      }
+      const filterStatus = allData.filter((x) => x.status === status);
+      setTodo(filterStatus);
       setOpenDeleteModal(false);
       toast.warning("Task Deleted");
     } catch (error) {
