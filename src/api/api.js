@@ -21,3 +21,23 @@ export const addTask = async (newTask) => {
   });
   return;
 };
+
+export const updateTaskStatus = async (id, newStatus) => {
+  // Fetch the current task data
+  const response = await fetch(`/api/tasks/${id}`);
+  const task = await response.json();
+
+  // Update the status field
+  task.status = newStatus;
+
+  // Send the updated task data back to the server
+  await fetch(`/api/tasks/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  });
+
+  return;
+};
