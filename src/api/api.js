@@ -12,7 +12,7 @@ export const deleteTask = async (id) => {
 };
 
 export const addTask = async (newTask) => {
-  await fetch("/api/tasks", {
+  await fetch("/api/tasks/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
