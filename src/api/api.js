@@ -1,24 +1,21 @@
 export const fetchTasks = async () => {
   const res = await fetch(
-    "https://my-json-server.typicode.com/HardelleBriones/backend-json-server/tasks"
+    "https://backend-json-server-three.vercel.app/tasks/"
   );
   const data = await res.json();
   return data;
 };
 
 export const deleteTask = async (id) => {
-  await fetch(
-    `https://my-json-server.typicode.com/HardelleBriones/backend-json-server/tasks/${id}`,
-    {
-      method: "DELETE",
-    }
-  );
+  await fetch(`https://backend-json-server-three.vercel.app/tasks/${id}`, {
+    method: "DELETE",
+  });
   return;
 };
 
 export const addTask = async (newTask) => {
   const data = await fetch(
-    "https://my-json-server.typicode.com/HardelleBriones/backend-json-server/tasks/",
+    "https://backend-json-server-three.vercel.app/tasks/",
     {
       method: "POST",
       headers: {
@@ -33,7 +30,7 @@ export const addTask = async (newTask) => {
 export const updateTaskStatus = async (id, newStatus) => {
   // Fetch the current task data
   const response = await fetch(
-    `https://my-json-server.typicode.com/HardelleBriones/backend-json-server/tasks/${id}`
+    `https://backend-json-server-three.vercel.app/tasks/${id}`
   );
   const task = await response.json();
 
@@ -41,7 +38,7 @@ export const updateTaskStatus = async (id, newStatus) => {
   task.status = newStatus;
 
   // Send the updated task data back to the server
-  await fetch(`/api/tasks/${id}`, {
+  await fetch(`https://backend-json-server-three.vercel.app/tasks/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

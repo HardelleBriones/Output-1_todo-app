@@ -7,28 +7,18 @@ import { fetchTasks, deleteTask, updateTaskStatus } from "../api/api";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import DeleteModal from "./DeleteModal";
 const TaskList = () => {
-  const handleOnClickDone = async (id) => {
-    try {
-      const status = "Complete";
-      await updateTaskStatus(id, status);
-
-      toast.success("Task Completed");
-    } catch (error) {
-      console.log("error in deleting task", error);
-    }
-  };
-
-  const darkTheme = useContext(ThemeContext);
   const [todo, setTodo] = useState([]);
   const [status, setStatus] = useState("InComplete"); // Default value
+  const [allData, setAllData] = useState([]);
   useEffect(() => {
     const fetchTodo = async () => {
       try {
         const data = await fetchTasks();
         const orderData = data
-          .filter((x) => x.status == status)
+          .filter((x) => x.status === status)
           .sort((a, b) => new Date(a.date) - new Date(b.date));
         setTodo(orderData);
+        setAllData(data);
       } catch (error) {
         console.log("error fetching data", error);
       }
@@ -36,13 +26,33 @@ const TaskList = () => {
     fetchTodo();
   }, []);
 
+  const handleOnClickDone = async (id) => {
+    try {
+      const statusUpdate = "Complete";
+      await updateTaskStatus(id, statusUpdate);
+      const filterStatus = todo.filter((x) => x.id !== id);
+      setTodo(filterStatus);
+      toast.success("Task Completed");
+    } catch (error) {
+      console.log("error in deleting task", error);
+    }
+  };
+
+  const darkTheme = useContext(ThemeContext);
+
   const handleChangeFilter = (event) => {
     //handle filter
+    // if (event.target.value === "InComplete") {
+    //   console.log("if statment incomplete");
+    // }
+    console.log("filter");
     setStatus(event.target.value);
-    const filterStatus = todo.filter((x) => x.status !== status);
+    console.log(todo);
+    const filterStatus = allData.filter((x) => x.status !== status);
     setTodo(filterStatus);
     console.log(event.target.value); // This will log the current value
   };
+
   const darkMode = () => {
     return darkTheme
       ? "flex flex-col items-center bg-gray-500 min-h-screen w-full"
