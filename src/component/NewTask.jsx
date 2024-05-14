@@ -25,10 +25,12 @@ const NewTask = () => {
       alert("Task name cannot be empty");
       return; // Do not proceed with submission if task name is empty
     }
+    const status = "InComplete";
     const newTask = {
       task,
       note,
       date,
+      status,
     };
     try {
       await addTask(newTask);
