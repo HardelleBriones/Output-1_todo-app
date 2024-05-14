@@ -34,10 +34,13 @@ const TaskList = () => {
       }
     };
     fetchTodo();
-  }, [todo, status]);
+  }, []);
 
   const handleChangeFilter = (event) => {
+    //handle filter
     setStatus(event.target.value);
+    const filterStatus = todo.filter((x) => x.status !== status);
+    setTodo(filterStatus);
     console.log(event.target.value); // This will log the current value
   };
   const darkMode = () => {
@@ -63,7 +66,9 @@ const TaskList = () => {
   const handleDelete = async () => {
     console.log(taskIdToDelete);
     try {
+      const filterDelete = todo.filter((x) => x.id !== taskIdToDelete);
       await deleteTask(taskIdToDelete);
+      setTodo(filterDelete);
       setOpenDeleteModal(false);
       toast.warning("Task Deleted");
     } catch (error) {
